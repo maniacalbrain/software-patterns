@@ -12,6 +12,13 @@ public class Game {
         this.players = players;
         System.out.println("Game started");
 
+        for (String player: players){
+            System.out.println(player);
+        }
+
+
+
+
     }
 
     //get_round

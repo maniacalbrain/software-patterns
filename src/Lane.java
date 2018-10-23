@@ -16,10 +16,19 @@ public class Lane implements Serializable {
     }
 
     public void start_game(ArrayList<String> players) {
-        game = new Game(players);
+        if(game == null){
+            game = new Game(players);
+        }else{
+            System.out.println("Game already in progress on this lane");
+        }
     }
 
-    private void end_game() {
-        game = null;
+    public void end_game() {
+        if(game != null){
+            game = null;
+            System.out.println("Game ended");
+        }else{
+            System.out.println("No game in progress");
+        }
     }
 }

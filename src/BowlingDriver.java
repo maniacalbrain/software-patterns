@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BowlingDriver extends JFrame{
 
-    private JPanel mainDriverPanel, panel, loginPanel, loginPage, homePanel, lanePanel, packagePanel, staffPanel;
+    private JPanel mainDriverPanel, panel, loginPanel, loginPage, homePanel, lanePanel, laneDetailsPanel, packagePanel, staffPanel;
     private CardLayout cardLayout;
     private static final int frameWidth = 310;
     private static final int frameHeight = 200;
@@ -131,15 +131,113 @@ public class BowlingDriver extends JFrame{
         lanes.add(lane5);
 
         JButton lane1_btn = new JButton("Lane 1");
+        lane1_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                laneDetailsPanel = createLaneDetailsPanel(lane1);
+                mainDriverPanel.add(laneDetailsPanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
         panel.add(lane1_btn);
         JButton lane2_btn = new JButton("Lane 2");
+        lane2_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                laneDetailsPanel = createLaneDetailsPanel(lane2);
+                mainDriverPanel.add(laneDetailsPanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
         panel.add(lane2_btn);
         JButton lane3_btn = new JButton("Lane 3");
+        lane3_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                laneDetailsPanel = createLaneDetailsPanel(lane3);
+                mainDriverPanel.add(laneDetailsPanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
         panel.add(lane3_btn);
         JButton lane4_btn = new JButton("Lane 4");
+        lane4_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                laneDetailsPanel = createLaneDetailsPanel(lane4);
+                mainDriverPanel.add(laneDetailsPanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
         panel.add(lane4_btn);
         JButton lane5_btn = new JButton("Lane 5");
+        lane5_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                laneDetailsPanel = createLaneDetailsPanel(lane5);
+                mainDriverPanel.add(laneDetailsPanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
         panel.add(lane5_btn);
+
+        return panel;
+    }
+
+    public JPanel createLaneDetailsPanel(Lane lane){
+        panel = new JPanel(new FlowLayout());
+
+        ArrayList<String> players = new ArrayList();
+
+        JLabel lbl_player1 = new JLabel("Player1");
+        JTextField txtfld_player1 = new JTextField(20);
+
+        JLabel lbl_player2 = new JLabel("Player2");
+        JTextField txtfld_player2 = new JTextField(20);
+
+        JLabel lbl_player3 = new JLabel("Player3");
+        JTextField txtfld_player3 = new JTextField(20);
+
+        JLabel lbl_player4 = new JLabel("Player4");
+        JTextField txtfld_player4 = new JTextField(20);
+
+
+
+        JButton startGame_btn = new JButton("Start Game");
+        startGame_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!txtfld_player1.getText().isEmpty()){
+                    players.add(txtfld_player1.getText());
+                }
+                if(!txtfld_player2.getText().isEmpty()){
+                    players.add(txtfld_player2.getText());
+                }
+                if(!txtfld_player3.getText().isEmpty()){
+                    players.add(txtfld_player3.getText());
+                }
+                if(!txtfld_player4.getText().isEmpty()){
+                    players.add(txtfld_player4.getText());
+                }
+                lane.start_game(players);
+            }
+        });
+
+        JButton endGame_btn = new JButton("End Game");
+        endGame_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lane.end_game();
+            }
+        });
+
+        panel.add(lbl_player1);
+        panel.add(txtfld_player1);
+        panel.add(lbl_player2);
+        panel.add(txtfld_player2);
+        panel.add(lbl_player3);
+        panel.add(txtfld_player3);
+        panel.add(lbl_player4);
+        panel.add(txtfld_player4);
+        panel.add(startGame_btn);
+        panel.add(endGame_btn);
+
+
 
         return panel;
     }
