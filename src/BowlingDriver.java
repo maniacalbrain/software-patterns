@@ -11,6 +11,12 @@ public class BowlingDriver extends JFrame{
     private static final int frameWidth = 310;
     private static final int frameHeight = 200;
 
+    Lane lane1 = new Lane(1);
+    Lane lane2 = new Lane(2);
+    Lane lane3 = new Lane(3);
+    Lane lane4 = new Lane(4);
+    Lane lane5 = new Lane(5);
+
 
     public static void main(String[] args){
         BowlingDriver bd = new BowlingDriver();
@@ -20,6 +26,13 @@ public class BowlingDriver extends JFrame{
     }
 
     public BowlingDriver() {
+
+        ArrayList<Lane> lanes = new ArrayList();
+        lanes.add(lane1);
+        lanes.add(lane2);
+        lanes.add(lane3);
+        lanes.add(lane4);
+        lanes.add(lane5);
 
         setTitle("Bowling System");
         setSize(frameWidth, frameHeight);
@@ -117,19 +130,6 @@ public class BowlingDriver extends JFrame{
 
         panel = new JPanel(new GridLayout(0,2));
 
-        Lane lane1 = new Lane(1);
-        Lane lane2 = new Lane(2);
-        Lane lane3 = new Lane(3);
-        Lane lane4 = new Lane(4);
-        Lane lane5 = new Lane(5);
-
-        ArrayList<Lane> lanes = new ArrayList();
-        lanes.add(lane1);
-        lanes.add(lane2);
-        lanes.add(lane3);
-        lanes.add(lane4);
-        lanes.add(lane5);
-
         JButton lane1_btn = new JButton("Lane 1");
         lane1_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -226,6 +226,16 @@ public class BowlingDriver extends JFrame{
             }
         });
 
+        JButton back_btn = new JButton("Back");
+        back_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lanePanel = createLanePanel();
+                mainDriverPanel.add(lanePanel, "Lanes");
+                cardLayout.show(mainDriverPanel, "Lanes");
+            }
+        });
+
         panel.add(lbl_player1);
         panel.add(txtfld_player1);
         panel.add(lbl_player2);
@@ -236,6 +246,7 @@ public class BowlingDriver extends JFrame{
         panel.add(txtfld_player4);
         panel.add(startGame_btn);
         panel.add(endGame_btn);
+        panel.add(back_btn);
 
 
 
