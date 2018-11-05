@@ -166,6 +166,7 @@ public class BowlingDriver extends JFrame{
             }
         });
         panel.add(lane4_btn);
+
         JButton lane5_btn = new JButton("Lane 5");
         lane5_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -175,6 +176,16 @@ public class BowlingDriver extends JFrame{
             }
         });
         panel.add(lane5_btn);
+
+        JButton back_btn = new JButton("Back");
+        back_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                homePanel = createHomePanel();
+                mainDriverPanel.add(homePanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
+        panel.add(back_btn);
 
         return panel;
     }
