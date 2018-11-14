@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Game {
+public abstract class Game{
 
     private ArrayList<String> players;
     private ArrayList<Integer> score;
@@ -10,15 +10,10 @@ public class Game {
     //List of players
     public Game(ArrayList<String> players){
         this.players = players;
-        System.out.println("Game started");
 
         for (String player: players){
             System.out.println(player);
         }
-
-
-
-
     }
 
     //get_round

@@ -207,6 +207,14 @@ public class BowlingDriver extends JFrame{
         JLabel lbl_player4 = new JLabel("Player4");
         JTextField txtfld_player4 = new JTextField(20);
 
+        JRadioButton default_btn = new JRadioButton("Default");
+        default_btn.setSelected(true);
+
+        JRadioButton pizza_btn = new JRadioButton("with Pizza");
+        //pizza_btn.setSelected(true);
+
+        JRadioButton cafe_btn = new JRadioButton("with Cafe Voucher");
+        //cafe_btn.setSelected(true);
 
 
         JButton startGame_btn = new JButton("Start Game");
@@ -225,7 +233,17 @@ public class BowlingDriver extends JFrame{
                 if(!txtfld_player4.getText().isEmpty()){
                     players.add(txtfld_player4.getText());
                 }
-                lane.start_game(players);
+
+                if(default_btn.isSelected()){
+                    lane.start_game(players);
+                }
+                else if(pizza_btn.isSelected()){
+                    lane.start_game_pizza(players);
+                }
+                else if(cafe_btn.isSelected()){
+                    lane.start_game_cafe(players);
+                }
+
             }
         });
 
@@ -234,6 +252,7 @@ public class BowlingDriver extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 lane.end_game();
+                players.clear();
             }
         });
 
@@ -255,9 +274,15 @@ public class BowlingDriver extends JFrame{
         panel.add(txtfld_player3);
         panel.add(lbl_player4);
         panel.add(txtfld_player4);
+
+        panel.add(default_btn);
+        panel.add(pizza_btn);
+        panel.add(cafe_btn);
+
         panel.add(startGame_btn);
         panel.add(endGame_btn);
         panel.add(back_btn);
+
 
 
 

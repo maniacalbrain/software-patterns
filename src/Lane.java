@@ -17,7 +17,23 @@ public class Lane implements Serializable {
 
     public void start_game(ArrayList<String> players) {
         if(game == null){
-            game = new Game(players);
+            game = new BasicGame(players);
+        }else{
+            System.out.println("Game already in progress on this lane");
+        }
+    }
+
+    public void start_game_pizza(ArrayList<String> players) {
+        if(game == null){
+            game = new GameWithPizza(players);
+        }else{
+            System.out.println("Game already in progress on this lane");
+        }
+    }
+
+    public void start_game_cafe(ArrayList<String> players) {
+        if(game == null){
+            game = new GameWithCafe(players);
         }else{
             System.out.println("Game already in progress on this lane");
         }
