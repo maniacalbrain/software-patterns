@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public abstract class Game{
+public class Game{
 
-    private ArrayList<String> players;
-    private ArrayList<Integer> score;
-    private int current_round = 1;
-    //Cost?
+    ArrayList<String> players;
+    ArrayList<Integer> score;
+    int current_round = 1;
+    double baseCost = 10.00;
 
     //List of players
     public Game(ArrayList<String> players){

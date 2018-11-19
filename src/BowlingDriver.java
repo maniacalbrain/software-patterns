@@ -17,12 +17,16 @@ public class BowlingDriver extends JFrame{
     Lane lane4 = new Lane(4);
     Lane lane5 = new Lane(5);
 
+    CounterStaff cs1 = new CounterStaff("CS1");
+    TechnicalStaff ts1 = new TechnicalStaff("TS1");
+    PartyStaff ps1 = new PartyStaff("PS1");
+
 
     public static void main(String[] args){
         BowlingDriver bd = new BowlingDriver();
         bd.setVisible(true);
         //Lane lane = new Lane(1);
-        //Package bdd = new ChildBirthdayPackage(10);
+
     }
 
     public BowlingDriver() {
@@ -211,10 +215,8 @@ public class BowlingDriver extends JFrame{
         default_btn.setSelected(true);
 
         JRadioButton pizza_btn = new JRadioButton("with Pizza");
-        //pizza_btn.setSelected(true);
 
         JRadioButton cafe_btn = new JRadioButton("with Cafe Voucher");
-        //cafe_btn.setSelected(true);
 
 
         JButton startGame_btn = new JButton("Start Game");
@@ -242,6 +244,8 @@ public class BowlingDriver extends JFrame{
                 }
                 else if(cafe_btn.isSelected()){
                     lane.start_game_cafe(players);
+                }else{
+                    lane.start_game(players);
                 }
 
             }
@@ -290,7 +294,51 @@ public class BowlingDriver extends JFrame{
     }
 
     public JPanel createPackagePanel(){
-        panel = new JPanel(new GridLayout(0,2));
+        panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+
+        JRadioButton kids_bowling_btn = new JRadioButton("Kids Bowling Party");
+        kids_bowling_btn.setSelected(true);
+
+        JRadioButton kids_playground_btn = new JRadioButton("Kids Playground Party");
+
+        JRadioButton teen_bowling_btn = new JRadioButton("Teen Neon Bowling");
+
+        JRadioButton teen_bowl_arc_btn = new JRadioButton("Teen Bowling & Arcade");
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(kids_bowling_btn);
+        buttonGroup.add(kids_playground_btn);
+        buttonGroup.add(teen_bowling_btn);
+        buttonGroup.add(teen_bowl_arc_btn);
+
+        JButton book_btn = new JButton("Book Party");
+        book_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(kids_bowling_btn.isSelected()){
+                    Party party = new KidsBowlParty();
+                }
+                else if(kids_playground_btn.isSelected()){
+                    Party party = new KidsPlayParty();
+                }
+                else if(teen_bowling_btn.isSelected()){
+                    Party party = new TeenNeonParty();
+                }
+                else if(teen_bowl_arc_btn.isSelected()){
+                    Party party = new TeenArcadeParty();
+                }
+            }
+        });
+
+
+
+
+        panel.add(kids_bowling_btn);
+        panel.add(kids_playground_btn);
+        panel.add(teen_bowling_btn);
+        panel.add(teen_bowl_arc_btn);
+        panel.add(book_btn);
 
         return panel;
     }
