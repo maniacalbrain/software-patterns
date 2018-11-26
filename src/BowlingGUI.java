@@ -238,6 +238,20 @@ class BowlingGUI extends JFrame{
                     players.add(txtfld_player4.getText());
                 }
 
+                Game game = new BasicGame(players);
+
+                if(pizza_btn.isSelected()){
+                    game = new Pizza(game);
+                }
+                else if(cafe_btn.isSelected()){
+                    game = new Cafe(game);
+                }
+
+                lane.start_game(game);
+
+
+
+                /*
                 if(default_btn.isSelected()){
                     lane.start_game(players);
                 }
@@ -248,8 +262,7 @@ class BowlingGUI extends JFrame{
                     lane.start_game_cafe(players);
                 }else{
                     lane.start_game(players);
-                }
-
+                } */
             }
         });
 

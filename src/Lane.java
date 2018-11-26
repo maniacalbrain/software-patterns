@@ -15,9 +15,10 @@ public class Lane implements Serializable {
         System.out.println("Lane " + Integer.toString(lane_number) + " online");
     }
 
-    public void start_game(ArrayList<String> players) {
-        if(game == null){
-            game = new BasicGame(players);
+    public void start_game(Game game) {
+        if(this.game == null){
+            this.game = game;
+            System.out.println("Game cost: €" + game.cost());
         }else{
             System.out.println("Game already in progress on this lane");
         }
@@ -25,7 +26,7 @@ public class Lane implements Serializable {
 
     public void start_game_pizza(ArrayList<String> players) {
         if(game == null){
-            game = new GameWithPizza(players);
+            //game = new GameWithPizza(players);
         }else{
             System.out.println("Game already in progress on this lane");
         }
@@ -33,7 +34,7 @@ public class Lane implements Serializable {
 
     public void start_game_cafe(ArrayList<String> players) {
         if(game == null){
-            game = new GameWithCafe(players);
+            //game = new GameWithCafe(players);
         }else{
             System.out.println("Game already in progress on this lane");
         }

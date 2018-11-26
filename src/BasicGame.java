@@ -1,11 +1,24 @@
 import java.util.ArrayList;
 
-public class BasicGame extends Game{
+public class BasicGame implements Game{
 
-    double cost = 0;
+    ArrayList<String> players;
+    ArrayList<Integer> score;
+    int current_round = 1;
+    double cost = 10.00;
 
     public BasicGame(ArrayList<String> players){
-        super(players);
-        System.out.println("Basic Game started. Cost: €" + Double.toString(baseCost+cost));
+
+        this.players = players;
+
+        for (String player: players){
+            System.out.println(player);
+        }
     }
+
+    public double cost(){
+        return cost;
+    }
+
+
 }
