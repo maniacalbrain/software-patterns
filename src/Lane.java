@@ -4,15 +4,15 @@ import java.util.ArrayList;
 public class Lane implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int lane_number;
+    private int laneNumber;
     Game game = null;
-    //Current players
+
     //Current score
     //Results of previous games
 
     public Lane(int lane_number) {
-        this.lane_number = lane_number;
-        System.out.println("Lane " + Integer.toString(lane_number) + " online");
+        this.laneNumber = lane_number;
+        System.out.println("Lane " + Integer.toString(laneNumber) + " online");
     }
 
     public void start_game(Game game) {
@@ -24,28 +24,19 @@ public class Lane implements Serializable {
         }
     }
 
-    public void start_game_pizza(ArrayList<String> players) {
-        if(game == null){
-            //game = new GameWithPizza(players);
-        }else{
-            System.out.println("Game already in progress on this lane");
-        }
-    }
-
-    public void start_game_cafe(ArrayList<String> players) {
-        if(game == null){
-            //game = new GameWithCafe(players);
-        }else{
-            System.out.println("Game already in progress on this lane");
-        }
-    }
-
     public void end_game() {
         if(game != null){
+            writeToDatabase(laneNumber, game.cost());
             game = null;
             System.out.println("Game ended");
         }else{
             System.out.println("No game in progress");
         }
     }
+
+    public void writeToDatabase(int laneNumber, double cost){
+        Database.getInstance().readData(laneNumber, cost);
+    }
+
+
 }

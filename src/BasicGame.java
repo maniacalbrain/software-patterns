@@ -20,5 +20,7 @@ public class BasicGame implements Game{
         return cost;
     }
 
+    //public ArrayList<String> getPlayers(){ return players;}
+
 
 }

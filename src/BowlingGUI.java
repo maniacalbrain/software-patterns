@@ -19,6 +19,9 @@ class BowlingGUI extends JFrame{
     Lane lane4 = new Lane(4);
     Lane lane5 = new Lane(5);
 
+    LaneMaintenance laneMaintenance = new LaneMaintenance(Database.getInstance());
+    //LaneMaintenance laneMaintenance = new LaneMaintenance(lane2);
+
     CounterStaff cs1 = new CounterStaff("CS1");
     TechnicalStaff ts1 = new TechnicalStaff("TS1");
     PartyStaff ps1 = new PartyStaff("PS1");

@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+
 public interface Game {
 
     public abstract double cost();
+
+    //public abstract ArrayList<String> getPlayers();
 
 }
 
