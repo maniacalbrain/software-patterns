@@ -22,10 +22,11 @@ class BowlingGUI extends JFrame{
     LaneMaintenance laneMaintenance = new LaneMaintenance(Database.getInstance());
     //LaneMaintenance laneMaintenance = new LaneMaintenance(lane2);
 
-    CounterStaff cs1 = new CounterStaff("CS1");
-    TechnicalStaff ts1 = new TechnicalStaff("TS1");
-    PartyStaff ps1 = new PartyStaff("PS1");
+    Staff cs1 = new CounterStaff("CS1", new GrantAccessTill(), new GrantAccessReport(), new RestrictMaintenance());
+    Staff ts1 = new TechnicalStaff("TS1", new GrantAccessTill(), new RestrictAccessReport(), new GrantMaintenance());
+    PartyStaff ps1 = new PartyStaff("PS1", new RestrictAccessTill(), new RestrictAccessReport(), new RestrictMaintenance());
 
+    ArrayList<Staff> staffList = new ArrayList<Staff>();
 
     private BowlingGUI() {
 
@@ -118,7 +119,7 @@ class BowlingGUI extends JFrame{
         });
 
         JButton btn_staff = new JButton("Staff");
-        btn_packages.addActionListener(new ActionListener() {
+        btn_staff.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 staffPanel = createStaffPanel();
@@ -252,21 +253,6 @@ class BowlingGUI extends JFrame{
 
                 lane.startGame(game);
                 players.clear();
-
-
-
-                /*
-                if(default_btn.isSelected()){
-                    lane.start_game(players);
-                }
-                else if(pizza_btn.isSelected()){
-                    lane.start_game_pizza(players);
-                }
-                else if(cafe_btn.isSelected()){
-                    lane.start_game_cafe(players);
-                }else{
-                    lane.start_game(players);
-                } */
             }
         });
 
@@ -315,7 +301,6 @@ class BowlingGUI extends JFrame{
     public JPanel createPackagePanel(){
         panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-
         JRadioButton kids_bowling_btn = new JRadioButton("Kids Bowling Party");
         kids_bowling_btn.setSelected(true);
 
@@ -350,7 +335,14 @@ class BowlingGUI extends JFrame{
             }
         });
 
-
+        JButton back_btn = new JButton("Back");
+        back_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                homePanel = createHomePanel();
+                mainDriverPanel.add(homePanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
 
 
         panel.add(kids_bowling_btn);
@@ -359,11 +351,41 @@ class BowlingGUI extends JFrame{
         panel.add(teen_bowl_arc_btn);
         panel.add(book_btn);
 
+        panel.add(back_btn);
+
         return panel;
     }
 
     public JPanel createStaffPanel(){
-        panel = new JPanel(new GridLayout(0,2));
+        panel = new JPanel(new GridLayout(2,2));
+
+        staffList.clear();
+        staffList.add(cs1);
+        staffList.add(ts1);
+        staffList.add(ps1);
+
+        JButton staff_btn = new JButton("Show Staff");
+        staff_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                for (Staff staff: staffList){
+                    System.out.print(staff.name + " ");
+                    staff.accessTill();
+                }
+            }
+        });
+
+        JButton back_btn = new JButton("Back");
+        back_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                homePanel = createHomePanel();
+                mainDriverPanel.add(homePanel, "Home");
+                cardLayout.show(mainDriverPanel, "Home");
+            }
+        });
+
+        panel.add(staff_btn);
+
+        panel.add(back_btn);
 
         return panel;
     }

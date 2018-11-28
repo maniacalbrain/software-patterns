@@ -1,16 +1,7 @@
 public class CounterStaff extends Staff{
 
-    public CounterStaff(String name){
-        super(name);
+    public CounterStaff(String name, TillPermission tp, ReportPermission rp, MaintenancePermission mp){
+        super(name, tp, rp, mp);
     }
-
-    public void accessTill(){
-        System.out.println("Can access Till");
-    }
-
-    public void accessReports(){
-        System.out.println("Can access reports");
-    }
-
 
 }
