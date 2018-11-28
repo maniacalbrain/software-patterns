@@ -13,11 +13,11 @@ class BowlingGUI extends JFrame{
     private static final int frameWidth = 310;
     private static final int frameHeight = 200;
 
-    Lane lane1 = new Lane(1);
-    Lane lane2 = new Lane(2);
-    Lane lane3 = new Lane(3);
-    Lane lane4 = new Lane(4);
-    Lane lane5 = new Lane(5);
+    LaneAdapter lane1 = new LaneAdapter(1);
+    LaneAdapter lane2 = new LaneAdapter(2);
+    LaneAdapter lane3 = new LaneAdapter(3);
+    LaneAdapter lane4 = new LaneAdapter(4);
+    LaneAdapter lane5 = new LaneAdapter(5);
 
     LaneMaintenance laneMaintenance = new LaneMaintenance(Database.getInstance());
     //LaneMaintenance laneMaintenance = new LaneMaintenance(lane2);
@@ -29,7 +29,7 @@ class BowlingGUI extends JFrame{
 
     private BowlingGUI() {
 
-        ArrayList<Lane> lanes = new ArrayList();
+        ArrayList<LaneAdapter> lanes = new ArrayList();
         lanes.add(lane1);
         lanes.add(lane2);
         lanes.add(lane3);
@@ -199,7 +199,7 @@ class BowlingGUI extends JFrame{
         return panel;
     }
 
-    public JPanel createLaneDetailsPanel(Lane lane){
+    public JPanel createLaneDetailsPanel(LaneAdapter lane){
         panel = new JPanel(new FlowLayout());
 
         ArrayList<String> players = new ArrayList();
@@ -250,7 +250,8 @@ class BowlingGUI extends JFrame{
                     game = new Cafe(game);
                 }
 
-                lane.start_game(game);
+                lane.startGame(game);
+                players.clear();
 
 
 
@@ -273,7 +274,7 @@ class BowlingGUI extends JFrame{
         endGame_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lane.end_game();
+                lane.endGame();
                 players.clear();
             }
         });
