@@ -320,18 +320,24 @@ class BowlingGUI extends JFrame{
         book_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Party party = null;
+
                 if(kids_bowling_btn.isSelected()){
-                    Party party = new KidsBowlParty();
+                    party = new KidsBowlParty();
                 }
                 else if(kids_playground_btn.isSelected()){
-                    Party party = new KidsPlayParty();
+                    party = new KidsPlayParty();
                 }
                 else if(teen_bowling_btn.isSelected()){
-                    Party party = new TeenNeonParty();
+                    party = new TeenNeonParty();
                 }
                 else if(teen_bowl_arc_btn.isSelected()){
-                    Party party = new TeenArcadeParty();
+                    party = new TeenArcadeParty();
                 }
+                if(party != null){
+                    party.setupPartyArea();
+                }
+
             }
         });
 
