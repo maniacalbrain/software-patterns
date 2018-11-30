@@ -8,7 +8,15 @@ class BowlingGUI extends JFrame{
 
     private static BowlingGUI instance;
 
-    private JPanel mainDriverPanel, panel, loginPanel, loginPage, homePanel, lanePanel, laneDetailsPanel, packagePanel, staffPanel;
+    private JPanel mainDriverPanel;
+    private JPanel panel;
+    private JPanel loginPanel;
+    private JPanel loginPage;
+    private JPanel homePanel;
+    private JPanel lanePanel;
+    private JPanel laneDetailsPanel;
+    private JPanel packagePanel;
+    private JPanel staffPanel;
     private CardLayout cardLayout;
     private static final int frameWidth = 310;
     private static final int frameHeight = 200;
@@ -62,8 +70,6 @@ class BowlingGUI extends JFrame{
         return instance;
     }
 
-
-
         public JPanel createLoginPanel(){
             panel = new JPanel(new GridLayout(0,1));
             JButton login = new JButton("Login");
@@ -95,7 +101,6 @@ class BowlingGUI extends JFrame{
     }
 
     public JPanel createHomePanel(){
-        //panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel = new JPanel(new GridLayout(0,2));
 
         JButton btn_lanes = new JButton("Lanes");
@@ -108,13 +113,13 @@ class BowlingGUI extends JFrame{
             }
         });
 
-        JButton btn_packages = new JButton("Packages");
+        JButton btn_packages = new JButton("Parties");
         btn_packages.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 packagePanel = createPackagePanel();
-                mainDriverPanel.add(packagePanel, "Packages");
-                cardLayout.show(mainDriverPanel, "Packages");
+                mainDriverPanel.add(packagePanel, "Parties");
+                cardLayout.show(mainDriverPanel, "Parties");
             }
         });
 
@@ -292,9 +297,6 @@ class BowlingGUI extends JFrame{
         panel.add(endGame_btn);
         panel.add(back_btn);
 
-
-
-
         return panel;
     }
 
@@ -320,24 +322,19 @@ class BowlingGUI extends JFrame{
         book_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Party party = null;
 
                 if(kids_bowling_btn.isSelected()){
-                    party = new KidsBowlParty();
+                    BookChildsParty("Bowl");
                 }
                 else if(kids_playground_btn.isSelected()){
-                    party = new KidsPlayParty();
+                    BookChildsParty("Play");
                 }
                 else if(teen_bowling_btn.isSelected()){
-                    party = new TeenNeonParty();
+                    BookTeensParty("Bowl");
                 }
                 else if(teen_bowl_arc_btn.isSelected()){
-                    party = new TeenArcadeParty();
+                    BookTeensParty("Arcade");
                 }
-                if(party != null){
-                    party.setupPartyArea();
-                }
-
             }
         });
 
@@ -361,6 +358,17 @@ class BowlingGUI extends JFrame{
 
         return panel;
     }
+
+    public void BookChildsParty(String type){
+        PartyBooker pb = new ChildPartyFactory();
+        Party party = pb.bookParty(type);
+    }
+
+    public void BookTeensParty(String type){
+        PartyBooker pb = new TeenPartyFactory();
+        Party party = pb.bookParty(type);
+    }
+
 
     public JPanel createStaffPanel(){
         panel = new JPanel(new GridLayout(2,2));
@@ -395,8 +403,4 @@ class BowlingGUI extends JFrame{
 
         return panel;
     }
-
-
-
-
 }
