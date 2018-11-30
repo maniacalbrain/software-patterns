@@ -21,24 +21,29 @@ class BowlingGUI extends JFrame{
     private static final int frameWidth = 310;
     private static final int frameHeight = 200;
 
-    LaneAdapter lane1 = new LaneAdapter(1);
-    LaneAdapter lane2 = new LaneAdapter(2);
-    LaneAdapter lane3 = new LaneAdapter(3);
-    LaneAdapter lane4 = new LaneAdapter(4);
-    LaneAdapter lane5 = new LaneAdapter(5);
+    LaneInterface lane1 = new LaneAdapter(1);
+    LaneInterface lane2 = new LaneAdapter(2);
+    LaneInterface lane3 = new LaneAdapter(3);
+    LaneInterface lane4 = new LaneAdapter(4);
+    LaneInterface lane5 = new LaneAdapter(5);
 
     LaneMaintenance laneMaintenance = new LaneMaintenance(Database.getInstance());
-    //LaneMaintenance laneMaintenance = new LaneMaintenance(lane2);
 
-    Staff cs1 = new CounterStaff("CS1", new GrantAccessTill(), new GrantAccessReport(), new RestrictMaintenance());
-    Staff ts1 = new TechnicalStaff("TS1", new GrantAccessTill(), new RestrictAccessReport(), new GrantMaintenance());
-    PartyStaff ps1 = new PartyStaff("PS1", new RestrictAccessTill(), new RestrictAccessReport(), new RestrictMaintenance());
+    Staff cs1 = new CounterStaff("CS1", new GrantAccessTill(),
+            new GrantAccessReport(),
+            new RestrictMaintenance());
+    Staff ts1 = new TechnicalStaff("TS1",
+            new GrantAccessTill(), new RestrictAccessReport(),
+            new GrantMaintenance());
+    Staff ps1 = new PartyStaff("PS1",
+            new RestrictAccessTill(),
+            new RestrictAccessReport(), new RestrictMaintenance());
 
     ArrayList<Staff> staffList = new ArrayList<Staff>();
 
     private BowlingGUI() {
 
-        ArrayList<LaneAdapter> lanes = new ArrayList();
+        ArrayList<LaneInterface> lanes = new ArrayList();
         lanes.add(lane1);
         lanes.add(lane2);
         lanes.add(lane3);
@@ -136,8 +141,7 @@ class BowlingGUI extends JFrame{
         panel.add(btn_lanes);
         panel.add(btn_packages);
         panel.add(btn_staff);
-        JLabel lbl_home4 = new JLabel("Home4");
-        panel.add(lbl_home4);
+
         return panel;
     }
 
@@ -205,7 +209,7 @@ class BowlingGUI extends JFrame{
         return panel;
     }
 
-    public JPanel createLaneDetailsPanel(LaneAdapter lane){
+    public JPanel createLaneDetailsPanel(LaneInterface lane){
         panel = new JPanel(new FlowLayout());
 
         ArrayList<String> players = new ArrayList();

@@ -6,7 +6,9 @@ public class Staff {
     ReportPermission rp;
     MaintenancePermission mp;
 
-    public Staff(String name, TillPermission tp, ReportPermission rp, MaintenancePermission mp){
+    public Staff(String name, TillPermission tp,
+                 ReportPermission rp,
+                 MaintenancePermission mp){
 
         this.name = name;
         this.tp = tp;

@@ -1,14 +1,8 @@
-import java.io.Serializable;
-import java.util.ArrayList;
+public class Lane {
 
-public class Lane implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     private int laneNumber;
     Game game = null;
 
-    //Current score
-    //Results of previous games
 
     public Lane(int lane_number) {
         this.laneNumber = lane_number;
